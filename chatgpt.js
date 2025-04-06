@@ -4,8 +4,8 @@
 // @version      2025-04-06
 // @description  try to take over the world!
 // @author       You
-// @match        http://*.twitch.tv/
-// @match        https://*.twitch.tv/
+// @match        http://*.twitch.tv/*
+// @match        https://*.twitch.tv/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
@@ -13,9 +13,18 @@
 (function () {
     'use strict';
 
+    // 检查是否在首页
+    function isHomePage() {
+        return window.location.pathname === '/';
+    }
+
 
     // 处理 video 元素：取消 autoplay 和暂停播放
     function disableAutoplay(video) {
+        if (!isHomePage()) {
+            console.log('Not on the homepage, script will not run.');
+            return;
+        }
         console.log('停止播放');
         if (video._autoplayHandled) return; // 防止重复处理
         video._autoplayHandled = true;
@@ -52,6 +61,10 @@
     const observer = new MutationObserver((mutationsList) => {
         for (const mutation of mutationsList) {
             mutation.addedNodes.forEach((node) => {
+                if (!isHomePage()) {
+                    console.log('Not on the homepage, script will not run.');
+                    return;
+                }
                 if (node.tagName === "VIDEO") {
                     disableAutoplay(node);
                 } else if (node.querySelectorAll) {
