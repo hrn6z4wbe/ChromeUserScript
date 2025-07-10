@@ -2,8 +2,8 @@
 // @name         Block Twitch HomePage AutoPlay
 // @namespace    http://tampermonkey.net/
 // @version      2025-04-06
-// @description  try to take over the world!
-// @author       You
+// @description  Block Twitch HomePage AutoPlay
+// @author       hrn6z4wbe
 // @match        http://*.twitch.tv/*
 // @match        https://*.twitch.tv/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
